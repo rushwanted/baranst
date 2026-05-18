@@ -2295,8 +2295,8 @@ footer{
   .about-grid{grid-template-columns:1fr;gap:40px}
   .about-stats-grid{grid-template-columns:1fr 1fr;gap:10px}
   .asg-num{font-size:32px}
-  .about-analytics-grid{grid-template-columns:1fr 1fr}
-  .about-dash-bars{height:52px}
+  .about-analytics-grid{grid-template-columns:1fr 1fr !important}
+  .about-dash-bars{height:52px !important}
 
   /* SERVICES */
   .services-header{flex-direction:column;gap:16px;align-items:flex-start}
@@ -2463,13 +2463,13 @@ footer{
 @media(max-width:768px){
   .melis-mock{
     width:96% !important;
-    height:auto !important;
+    height:340px !important;
   }
   .melis-full-card .proj-visual{
-    height:360px !important;
+    height:380px !important;
   }
   .pv-melis{
-    height:360px !important;
+    height:380px !important;
   }
   .melis-hero{
     padding:12px !important;
@@ -2544,6 +2544,681 @@ footer{
   .pc-break-item{
     font-size:12px !important;
   }
+}
+
+
+/* ═══ ABOUT ANALYTİCS — GLOBAL ═══ */
+.about-analytics{
+  padding:20px;
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  background:var(--card-bg);
+  margin-bottom:16px;
+}
+.about-analytics-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;flex-wrap:wrap;gap:4px;
+}
+.about-analytics-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:8px;margin-bottom:12px;
+}
+.aa-stat{
+  text-align:center;padding:10px 4px;
+  background:var(--surface);
+  border-radius:10px;border:1px solid var(--border);
+}
+.aa-num{
+  font-family:'Syne',sans-serif;
+  font-size:18px;font-weight:800;
+  color:var(--accent);line-height:1;margin-bottom:3px;
+}
+.aa-label{
+  font-size:9px;color:var(--text3);letter-spacing:.05em;
+}
+.about-dash-chart{ margin-top:4px; }
+.about-dash-bars{
+  display:flex;align-items:flex-end;
+  gap:4px;height:52px;
+}
+.adb-col{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;gap:3px;height:100%;justify-content:flex-end;
+}
+.adb-bar{
+  width:100%;border-radius:2px 2px 0 0;
+  background:rgba(var(--accent-rgb),.2);
+  transition:height 1s ease;
+}
+.adb-after{
+  background:linear-gradient(to top,var(--accent),var(--accent2));
+}
+.adb-col span{font-size:8px;color:var(--text3);}
+.adb-launch{
+  font-size:8px;color:var(--accent);letter-spacing:.08em;
+  text-transform:uppercase;margin-top:4px;text-align:right;
+}
+
+/* ═══ MELİS MOCK — GLOBAL ═══ */
+.melis-full-card{ width:100%; }
+.melis-full-card .proj-visual{ height:480px !important; }
+.pv-melis{ background:#F7F9FC; height:480px !important; }
+.melis-mock{
+  width:94%; height:420px;
+  background:#ffffff;
+  border:1px solid rgba(0,168,158,.18);
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,168,158,.08),0 2px 8px rgba(0,0,0,.05);
+  display:flex;flex-direction:column;
+  font-family:'Cabinet Grotesk',sans-serif;
+}
+
+
+/* ════════════════════════════════
+   MELİS MOCK — TAM CSS
+════════════════════════════════ */
+
+/* Kart boyutu */
+.melis-full-card{ width:100%; }
+.melis-full-card .proj-visual{ height:480px !important; }
+.pv-melis{ background:#F7F9FC; height:480px !important; align-items:center; justify-content:center; }
+
+.melis-mock{
+  width:94%; height:440px;
+  background:#ffffff;
+  border:1px solid rgba(0,168,158,.18);
+  border-radius:10px; overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,168,158,.08),0 2px 8px rgba(0,0,0,.05);
+  transition:transform .4s;
+  display:flex; flex-direction:column;
+  font-family:'Cabinet Grotesk',sans-serif;
+}
+.proj-card:hover .melis-mock{transform:translateY(-4px) scale(1.015)}
+
+/* Toggle bar */
+.melis-toggle-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 18px;
+  background:linear-gradient(90deg,rgba(0,168,158,.06),rgba(0,168,158,.03));
+  border-bottom:1px solid rgba(0,168,158,.18);
+  cursor:pointer; transition:background .35s; flex-shrink:0;
+}
+.melis-toggle-bar:hover{background:linear-gradient(90deg,rgba(0,168,158,.12),rgba(0,168,158,.06))}
+#melisMock.melis-dark .melis-toggle-bar{
+  background:linear-gradient(90deg,rgba(0,212,200,.06),rgba(0,212,200,.02));
+  border-bottom-color:rgba(0,212,200,.15);
+}
+.melis-toggle-left{display:flex;align-items:center;gap:8px;}
+.mtb-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#00A89E; box-shadow:0 0 8px #00A89E;
+  animation:dotPulse 2s ease infinite; flex-shrink:0;
+  transition:background .3s,box-shadow .3s;
+}
+#melisMock.melis-dark .mtb-dot{background:#00D4C8;box-shadow:0 0 10px #00D4C8;}
+.mtb-label{
+  font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#00A89E; transition:color .3s;
+}
+#melisMock.melis-dark .mtb-label{color:#00D4C8;}
+.melis-toggle-switch{
+  width:38px;height:20px;
+  background:rgba(0,168,158,.15);
+  border:1px solid rgba(0,168,158,.35);
+  border-radius:100px; position:relative;
+  transition:background .4s,border-color .4s;
+}
+#melisMock.melis-dark .melis-toggle-switch{
+  background:#00A89E; border-color:#00A89E;
+  box-shadow:0 0 12px rgba(0,212,200,.3);
+}
+.melis-toggle-knob{
+  width:14px;height:14px;border-radius:50%;
+  background:#00A89E;
+  position:absolute;top:2px;left:2px;
+  transition:transform .35s cubic-bezier(.4,0,.2,1),background .3s;
+  box-shadow:0 1px 4px rgba(0,0,0,.2);
+}
+#melisMock.melis-dark .melis-toggle-knob{
+  transform:translateX(18px); background:#020B18;
+}
+
+/* Nav */
+.melis-nav{
+  padding:12px 22px;
+  background:#F7F9FC;
+  border-bottom:1px solid rgba(0,168,158,.14);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+#melisMock.melis-dark .melis-nav{
+  background:rgba(2,11,24,.95);
+  border-bottom-color:rgba(0,212,200,.12);
+}
+.melis-logo-badge{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  color:#00A89E;letter-spacing:.06em;
+  display:flex;align-items:center;gap:5px;
+}
+#melisMock.melis-dark .melis-logo-badge{color:#00D4C8;}
+.melis-logo-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:#00A89E;box-shadow:0 0 6px #00A89E;
+}
+#melisMock.melis-dark .melis-logo-dot{background:#00D4C8;box-shadow:0 0 6px #00D4C8;}
+.melis-nav-links{display:flex;gap:9px;}
+.melis-nav-links span{
+  font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+  color:#3A6080;font-weight:600;
+}
+.melis-nav-links span.active{color:#00A89E;}
+#melisMock.melis-dark .melis-nav-links span{color:#4E8090;}
+#melisMock.melis-dark .melis-nav-links span.active{color:#00D4C8;}
+.melis-nav-right{display:flex;align-items:center;gap:8px;}
+.melis-lang{
+  font-size:7px;font-weight:700;letter-spacing:.08em;
+  color:#3A6080;border:1px solid rgba(0,168,158,.25);
+  padding:2px 5px;border-radius:2px;
+}
+.melis-theme-icon{font-size:11px;color:#3A6080;}
+#melisMock.melis-dark .melis-theme-icon{color:#4E8090;}
+
+/* Slider */
+.melis-slider{
+  flex:1;overflow:hidden;position:relative;
+}
+.mslide{
+  position:absolute;inset:0;
+  opacity:0;transform:translateX(40px);
+  transition:opacity .35s ease,transform .35s ease;
+  pointer-events:none;
+}
+.mslide.mslide-active{
+  opacity:1;transform:translateX(0);
+  position:relative;pointer-events:all;
+}
+.mslide.mslide-exit{
+  opacity:0;transform:translateX(-40px);
+  position:absolute;
+}
+
+/* Hero slide */
+.melis-hero{
+  flex:1;padding:22px 28px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.melis-hero-text{flex:1;}
+.melis-eyebrow{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:#00A89E;font-weight:700;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.melis-eyebrow::before{content:'';width:14px;height:1px;background:#00A89E;display:block;}
+#melisMock.melis-dark .melis-eyebrow{color:#00D4C8;}
+#melisMock.melis-dark .melis-eyebrow::before{background:#00D4C8;}
+.melis-hero-name{
+  font-family:'Syne',sans-serif;
+  font-size:38px;font-weight:800;
+  color:#0D2137;line-height:.9;letter-spacing:-1.5px;margin-bottom:12px;
+}
+.melis-hero-name span{color:#00A89E;display:block;}
+#melisMock.melis-dark .melis-hero-name{color:#DFF0F8;}
+#melisMock.melis-dark .melis-hero-name span{color:#00D4C8;}
+.melis-hero-bio{
+  font-size:12px;color:#3A6080;line-height:1.7;
+  max-width:320px;margin-bottom:16px;font-weight:400;
+}
+#melisMock.melis-dark .melis-hero-bio{color:#4E8090;}
+.melis-btns{display:flex;gap:5px;flex-wrap:wrap;}
+.melis-btn-p{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 22px;background:#00A89E;color:#fff;border-radius:2px;
+}
+.melis-btn-s{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 22px;border:1px solid rgba(0,168,158,.45);color:#00A89E;
+}
+#melisMock.melis-dark .melis-btn-p{background:#00A89E;color:#020B18;}
+#melisMock.melis-dark .melis-btn-s{border-color:rgba(0,212,200,.45);color:#00D4C8;}
+
+/* Orbit + logo */
+.melis-photo-wrap{position:relative;flex-shrink:0;}
+.melis-orbit{
+  position:absolute;width:160px;height:160px;
+  border:1px solid rgba(0,168,158,.2);border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:melisOrbit 8s linear infinite;
+}
+.melis-orbit::before{
+  content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);
+  width:8px;height:8px;background:#00A89E;border-radius:50%;
+  box-shadow:0 0 12px #00A89E;
+}
+@keyframes melisOrbit{
+  from{transform:translate(-50%,-50%) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+.melis-mp-logo{
+  width:130px;height:130px;border-radius:50%;
+  background:rgba(0,168,158,.06);
+  border:2px solid rgba(0,168,158,.3);
+  box-shadow:0 0 0 10px rgba(0,168,158,.04),0 12px 40px rgba(0,0,0,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:30px;font-weight:800;
+  color:#00A89E;letter-spacing:.04em;
+}
+#melisMock.melis-dark .melis-mp-logo{
+  background:rgba(0,212,200,.08);border-color:rgba(0,212,200,.3);color:#00D4C8;
+  box-shadow:0 0 0 10px rgba(0,212,200,.04),0 0 30px rgba(0,212,200,.08);
+}
+#melisMock.melis-dark .melis-orbit{border-color:rgba(0,212,200,.18);}
+#melisMock.melis-dark .melis-orbit::before{background:#00D4C8;box-shadow:0 0 12px #00D4C8;}
+
+/* Slider controls */
+.melis-slider-ctrl{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:10px 0 12px;border-top:1px solid rgba(0,168,158,.1);flex-shrink:0;
+}
+#melisMock.melis-dark .melis-slider-ctrl{border-top-color:rgba(0,212,200,.1);}
+.mslider-prev,.mslider-next{
+  width:30px;height:30px;border-radius:50%;
+  border:1px solid rgba(0,168,158,.3);
+  background:transparent;color:#00A89E;
+  font-size:18px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;padding:0;
+}
+.mslider-prev:hover,.mslider-next:hover{background:#00A89E;color:#fff;border-color:#00A89E;}
+#melisMock.melis-dark .mslider-prev,#melisMock.melis-dark .mslider-next{
+  border-color:rgba(0,212,200,.3);color:#00D4C8;
+}
+.mslider-dots{display:flex;gap:5px;align-items:center;}
+.mslider-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(0,168,158,.2);cursor:pointer;transition:all .25s;
+}
+.mslider-dot.active{background:#00A89E;width:22px;border-radius:4px;}
+#melisMock.melis-dark .mslider-dot{background:rgba(0,212,200,.2);}
+#melisMock.melis-dark .mslider-dot.active{background:#00D4C8;}
+
+/* Slide inner */
+.mslide-inner{
+  padding:24px 28px 16px;height:100%;
+  display:flex;flex-direction:column;gap:12px;
+}
+.mslide-label{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:#00A89E;font-weight:700;
+  display:flex;align-items:center;gap:8px;margin-bottom:8px;
+}
+.mslide-label::before{content:'';width:14px;height:1px;background:#00A89E;opacity:.6;}
+#melisMock.melis-dark .mslide-label{color:#00D4C8;}
+#melisMock.melis-dark .mslide-label::before{background:#00D4C8;}
+
+/* Projects slide */
+.mslide-proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.mslide-proj-card{
+  background:#F7F9FC;border:1px solid rgba(0,168,158,.14);
+  padding:14px;border-radius:4px;transition:border-color .2s;
+}
+.mslide-proj-card.mslide-feat{grid-column:span 2;}
+.mslide-proj-num{font-size:6px;letter-spacing:.15em;color:rgba(0,168,158,.5);font-family:'Syne',sans-serif;font-weight:700;margin-bottom:4px;}
+.mslide-proj-icon{font-size:24px;margin-bottom:8px;}
+.mslide-proj-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#0D2137;line-height:1.3;margin-bottom:8px;}
+.mslide-proj-tags{display:flex;flex-wrap:wrap;gap:3px;}
+.mslide-proj-tags span{font-size:9px;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(0,168,158,.2);color:#3A6080;border-radius:1px;}
+#melisMock.melis-dark .mslide-proj-card{background:rgba(4,21,37,.8);border-color:rgba(0,212,200,.12);}
+#melisMock.melis-dark .mslide-proj-title{color:#DFF0F8;}
+#melisMock.melis-dark .mslide-proj-tags span{border-color:rgba(0,212,200,.18);color:#4E8090;}
+#melisMock.melis-dark .mslide-proj-num{color:rgba(0,212,200,.5);}
+
+/* Education slide */
+.mslide-edu-list{display:flex;flex-direction:column;gap:7px;}
+.mslide-edu-card{
+  display:flex;gap:16px;align-items:flex-start;
+  background:#F7F9FC;border:1px solid rgba(0,168,158,.14);
+  padding:16px;border-radius:4px;
+}
+.mslide-edu-logo{
+  width:56px;height:56px;flex-shrink:0;
+  background:rgba(0,168,158,.08);border:1px solid rgba(0,168,158,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  color:#00A89E;letter-spacing:.04em;border-radius:2px;
+}
+.mslide-edu-degree{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#0D2137;margin-bottom:4px;line-height:1.3;}
+.mslide-edu-school{font-size:12px;color:#00A89E;font-weight:500;margin-bottom:3px;}
+.mslide-edu-date{font-size:11px;color:#3A6080;letter-spacing:.06em;}
+#melisMock.melis-dark .mslide-edu-card{background:rgba(4,21,37,.8);border-color:rgba(0,212,200,.12);}
+#melisMock.melis-dark .mslide-edu-logo{background:rgba(0,212,200,.08);border-color:rgba(0,212,200,.25);color:#00D4C8;}
+#melisMock.melis-dark .mslide-edu-degree{color:#DFF0F8;}
+#melisMock.melis-dark .mslide-edu-school{color:#00D4C8;}
+#melisMock.melis-dark .mslide-edu-date{color:#4E8090;}
+
+/* Contact slide */
+.mslide-contact{justify-content:center;text-align:center;}
+.mslide-contact-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#0D2137;letter-spacing:-.8px;margin-bottom:8px;}
+.mslide-contact-sub{font-size:13px;color:#3A6080;margin-bottom:20px;line-height:1.5;}
+.mslide-contact-links{display:flex;flex-direction:column;gap:5px;align-items:center;}
+.mslide-contact-item{
+  font-size:13px;color:#3A6080;font-weight:500;
+  padding:10px 24px;border:1px solid rgba(0,168,158,.2);
+  border-radius:2px;background:#F7F9FC;width:fit-content;
+}
+#melisMock.melis-dark .mslide-contact-title{color:#DFF0F8;}
+#melisMock.melis-dark .mslide-contact-sub{color:#4E8090;}
+#melisMock.melis-dark .mslide-contact-item{background:rgba(4,21,37,.8);border-color:rgba(0,212,200,.18);color:#4E8090;}
+
+/* smooth transitions */
+#melisMock,#melisMock *{
+  transition:background .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease;
+}
+
+
+/* ═══ PROJE SLIDER ═══ */
+.portfolio-grid{
+  max-width:1280px;margin:0 auto;
+  display:flex;flex-direction:column;gap:24px;
+}
+.proj-slider-wrap{
+  overflow:hidden;position:relative;
+}
+.proj-slider-track{
+  display:flex;gap:20px;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.proj-slider-slide{
+  flex:0 0 calc(33.333% - 14px);
+  min-width:0;
+}
+.proj-slider-nav{
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;margin-top:20px;
+}
+.proj-slider-prev,.proj-slider-next{
+  width:40px;height:40px;border-radius:50%;
+  border:1.5px solid var(--border2);
+  background:var(--surface);color:var(--text2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:all .3s;
+}
+.proj-slider-prev:hover,.proj-slider-next:hover{
+  border-color:var(--accent);color:var(--accent);
+  box-shadow:0 0 16px rgba(var(--accent-rgb),.2);
+}
+.proj-slider-dots{display:flex;gap:7px;align-items:center;}
+.proj-sdot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--border2);cursor:pointer;transition:all .3s;border:none;
+}
+.proj-sdot.active{background:var(--accent);width:20px;border-radius:4px;}
+
+@media(max-width:1100px){
+  .proj-slider-slide{flex:0 0 calc(50% - 10px);}
+}
+@media(max-width:768px){
+  .proj-slider-slide{flex:0 0 100%;}
+  .melis-full-card .proj-visual{height:380px !important;}
+  .pv-melis{height:380px !important;}
+}
+
+
+/* ═══ PORTFOLIO SPLIT LAYOUT ═══ */
+.portfolio-split{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:20px !important;
+  align-items:start !important;
+}
+.portfolio-melis-col{ min-width:0; }
+.portfolio-melis-col .melis-full-card{ width:100%; }
+.portfolio-melis-col .proj-visual{ height:520px !important; }
+.portfolio-melis-col .pv-melis{ height:520px !important; }
+.portfolio-melis-col .melis-mock{ width:96% !important; height:480px !important; }
+
+.portfolio-others-col{ min-width:0; }
+.proj-right-slider{ overflow:hidden; position:relative; }
+.proj-right-track{
+  display:flex; gap:16px;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+.proj-right-slide{
+  flex:0 0 100%; min-width:0;
+}
+.proj-right-nav{
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;margin-top:16px;
+}
+.proj-right-dots{ display:flex;gap:6px;align-items:center; }
+.proj-rdot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border2);cursor:pointer;transition:all .3s;border:none;
+}
+.proj-rdot.active{
+  background:var(--accent);width:18px;border-radius:3px;
+  box-shadow:0 0 8px rgba(var(--accent-rgb),.4);
+}
+
+@media(max-width:900px){
+  .portfolio-split{
+    grid-template-columns:1fr !important;
+  }
+  .portfolio-melis-col .proj-visual{ height:400px !important; }
+  .portfolio-melis-col .pv-melis{ height:400px !important; }
+  .portfolio-melis-col .melis-mock{ height:360px !important; }
+}
+
+
+/* ═══ MOBİL FİYAT HESAPLAYICI — YAN YANA ═══ */
+@media(max-width:768px){
+  .price-calc{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:12px !important;
+    align-items:start !important;
+  }
+  /* Sol — seçenekler */
+  .pc-left{
+    min-width:0;
+    font-size:12px;
+  }
+  .pc-section-title{
+    font-size:9px !important;
+    margin-bottom:8px !important;
+  }
+  /* Proje tipi butonları */
+  .pc-options{
+    flex-direction:column !important;
+    gap:6px !important;
+  }
+  .pc-opt{
+    width:100% !important;
+    padding:8px 10px !important;
+    font-size:10px !important;
+    border-radius:10px !important;
+  }
+  .pc-type-opt{
+    flex-direction:row !important;
+    gap:6px !important;
+    padding:8px 10px !important;
+  }
+  .pc-type-icon{
+    width:20px !important;
+    height:20px !important;
+  }
+  /* Ekstra özellikler */
+  .pc-check-item{
+    padding:8px 10px !important;
+    border-radius:10px !important;
+    gap:6px !important;
+  }
+  .pc-item-label{
+    font-size:11px !important;
+  }
+  .pc-item-price-static{
+    font-size:10px !important;
+    margin-right:6px !important;
+  }
+  .pc-anim-check{
+    width:18px !important;
+    height:18px !important;
+  }
+  .pc-icon-wrap{
+    width:28px !important;
+    height:28px !important;
+  }
+  .pc-icon-wrap svg,.pc-svg-icon svg{
+    width:28px !important;
+    height:28px !important;
+  }
+  .pc-extras-hint{
+    font-size:10px !important;
+    padding:6px 10px !important;
+  }
+  /* Hız seçenekleri */
+  .pc-speed-opt{
+    padding:8px 10px !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:4px !important;
+    min-width:0 !important;
+    flex:1 !important;
+  }
+  .pc-speed-icon{
+    width:28px !important;
+    height:28px !important;
+  }
+  .pc-speed-text{
+    font-size:10px !important;
+    align-items:center !important;
+    text-align:center !important;
+  }
+  .pc-speed-text em{
+    font-size:8px !important;
+  }
+  #pcSpeed.pc-options{
+    flex-direction:row !important;
+    gap:6px !important;
+  }
+
+  /* Sağ — fiyat kartı */
+  .pc-right{
+    position:sticky !important;
+    top:72px !important;
+    min-width:0 !important;
+  }
+  .pc-result{
+    padding:14px !important;
+    border-radius:16px !important;
+    position:sticky !important;
+    top:72px !important;
+  }
+  .pc-price-label{
+    font-size:8px !important;
+    margin-bottom:6px !important;
+  }
+  .pc-num{
+    font-size:28px !important;
+    letter-spacing:-1px !important;
+  }
+  .pc-cur{
+    font-size:13px !important;
+    padding-bottom:4px !important;
+  }
+  .pc-note{
+    font-size:9px !important;
+    margin-bottom:12px !important;
+  }
+  .pc-breakdown{
+    gap:4px !important;
+    margin-bottom:12px !important;
+    max-height:120px !important;
+    overflow-y:auto !important;
+  }
+  .pc-break-item{
+    font-size:10px !important;
+  }
+  .pc-break-label{
+    font-size:10px !important;
+  }
+  .pc-orig-price,.pc-final-price{
+    font-size:9px !important;
+  }
+  .pc-break-prices{
+    gap:4px !important;
+  }
+  .pc-divider{
+    margin-bottom:10px !important;
+  }
+  .pc-cta{
+    font-size:10px !important;
+    padding:10px 8px !important;
+    border-radius:100px !important;
+    margin-bottom:8px !important;
+  }
+  .pc-trust{
+    font-size:8px !important;
+    gap:6px !important;
+    flex-direction:column !important;
+    align-items:center !important;
+  }
+  /* İndirim banner */
+  .pc-discount-banner{
+    margin-bottom:10px !important;
+  }
+  .pc-discount-inner{
+    padding:6px 10px !important;
+    border-radius:8px !important;
+  }
+  .pc-disc-icon-wrap{
+    width:32px !important;
+    height:32px !important;
+  }
+  .pc-disc-svg{
+    width:32px !important;
+    height:32px !important;
+  }
+  .pc-discount-text{
+    font-size:9px !important;
+  }
+  .pc-discount-amt{
+    font-size:12px !important;
+  }
+  /* Orijinal fiyat */
+  .pc-original-price{
+    padding:6px 8px !important;
+    gap:4px !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+  }
+  .pc-original-label{
+    font-size:8px !important;
+  }
+  .pc-original-num{
+    font-size:11px !important;
+  }
+  .pc-savings{
+    font-size:9px !important;
+    padding:2px 8px !important;
+  }
+  /* Multi badge */
+  .pc-multi-badge{
+    font-size:7px !important;
+    padding:2px 6px !important;
+  }
+}
+
+@media(max-width:480px){
+  .price-calc{
+    grid-template-columns:55fr 45fr !important;
+    gap:8px !important;
+  }
+  .pc-num{ font-size:24px !important; }
+  .pc-result{ padding:10px !important; }
 }
 
 </style>
@@ -3150,320 +3825,119 @@ footer{
     <div class="s-label">Projeler</div>
     <h2 class="s-title">Seçili çalışmalar.</h2>
   </div>
-  <div class="portfolio-grid">
-    <div class="portfolio-main">
-      <div class="proj-card reveal melis-full-card" onclick="window.open('https://rushwanted.github.io/melispamir/','_blank')">
-        <a href="https://rushwanted.github.io/melispamir/" target="_blank" rel="noopener" class="proj-arrow-btn" style="cursor:none">↗</a>
-        <div class="proj-visual proj-visual-sm pv-melis">
-          <div class="proj-overlay"></div>
-          <div class="melis-mock" id="melisMock">
-            <!-- THEME TOGGLE BAR -->
-            <div class="melis-toggle-bar" onclick="toggleMelisTheme(event)">
-              <div class="melis-toggle-left">
-                <span class="mtb-dot"></span>
-                <span class="mtb-label" id="mtbLabel">Aydınlık Mod</span>
-              </div>
-              <div class="melis-toggle-switch" id="melisSwitch">
-                <div class="melis-toggle-knob"></div>
-              </div>
-            </div>
-            <!-- NAV -->
-            <div class="melis-nav">
-              <a class="melis-logo-badge">
-                <div class="melis-logo-dot"></div>
-                MP
-              </a>
-              <div class="melis-nav-links">
-                <span class="active">Hakkında</span>
-                <span>Eğitim</span>
-                <span>Projeler</span>
-                <span>İletişim</span>
-              </div>
-              <div class="melis-nav-right">
-                <span class="melis-lang">TR</span>
-                <span class="melis-theme-icon">☽</span>
-              </div>
-            </div>
-            <!-- SLIDER -->
-            <div class="melis-slider" id="melisSlider">
-              <!-- SLIDE 1: Hero -->
-              <div class="mslide mslide-active">
-                <div class="melis-hero">
-                  <div class="melis-hero-text">
-                    <div class="melis-eyebrow">Biyomedikal Mühendisi</div>
-                    <h2 class="melis-hero-name">Melis <span>Pamir</span></h2>
-                    <p class="melis-hero-bio">Sağlık teknolojileri ve biyomedikal araştırma alanında çalışan tutkulu bir mühendis.</p>
-                    <div class="melis-btns">
-                      <div class="melis-btn-p">Projeleri Gör</div>
-                      <div class="melis-btn-s">İletişime Geç</div>
+  <div class="portfolio-grid portfolio-split">
+    <!-- MELİS — Sol sabit -->
+    <div class="portfolio-melis-col">
 
-                    </div>
-                  </div>
-                  <div class="melis-photo-wrap">
-                    <div class="melis-orbit"></div>
-                    <div class="melis-mp-logo">MP</div>
-                  </div>
-                </div>
-              </div>
-              <!-- SLIDE 2: Projects -->
-              <div class="mslide">
-                <div class="mslide-inner">
-                  <div class="mslide-label">Projeler</div>
-                  <div class="mslide-proj-grid">
-                    <div class="mslide-proj-card mslide-feat">
-                      <div class="mslide-proj-num">01</div>
-                      <div class="mslide-proj-icon">🧬</div>
-                      <div class="mslide-proj-title">Biyosensör Sinyal İşleme</div>
-                      <div class="mslide-proj-tags"><span>Python</span><span>Sinyal İşleme</span></div>
-                    </div>
-                    <div class="mslide-proj-card">
-                      <div class="mslide-proj-num">02</div>
-                      <div class="mslide-proj-icon">🧠</div>
-                      <div class="mslide-proj-title">Medikal Görüntüleme YZ</div>
-                      <div class="mslide-proj-tags"><span>Derin Öğrenme</span></div>
-                    </div>
-                    <div class="mslide-proj-card">
-                      <div class="mslide-proj-num">03</div>
-                      <div class="mslide-proj-icon">❤️</div>
-                      <div class="mslide-proj-title">Giyilebilir Sağlık Monitörü</div>
-                      <div class="mslide-proj-tags"><span>IoT</span><span>Arduino</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- SLIDE 3: Education -->
-              <div class="mslide">
-                <div class="mslide-inner">
-                  <div class="mslide-label">Eğitim</div>
-                  <div class="mslide-edu-list">
-                    <div class="mslide-edu-card">
-                      <div class="mslide-edu-logo">PoliMi</div>
-                      <div class="mslide-edu-info">
-                        <div class="mslide-edu-degree">MSc Biyomedikal Mühendisiing</div>
-                        <div class="mslide-edu-school">Politecnico di Milano</div>
-                        <div class="mslide-edu-date">2023 — Devam · Milano, İT</div>
-                      </div>
-                    </div>
-                    <div class="mslide-edu-card">
-                      <div class="mslide-edu-logo">METU</div>
-                      <div class="mslide-edu-info">
-                        <div class="mslide-edu-degree">BSc Biyomedikal Mühendisiing</div>
-                        <div class="mslide-edu-school">Orta Doğu Teknik Üniversitesi</div>
-                        <div class="mslide-edu-date">2019 — 2023 · Ankara, TR</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- SLIDE 4: Contact -->
-              <div class="mslide">
-                <div class="mslide-inner mslide-contact">
-                  <div class="mslide-label">İletişim</div>
-                  <div class="mslide-contact-title">Bağlantı kuralım.</div>
-                  <div class="mslide-contact-sub">Araştırma iş birlikleri ve fırsatlara açığım.</div>
-                  <div class="mslide-contact-links">
-                    <div class="mslide-contact-item">✉ melispamir@email.com</div>
-                    <div class="mslide-contact-item">in LinkedIn</div>
-                    <div class="mslide-contact-item">🐙 GitHub</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- SLIDER CONTROLS -->
-            <div class="melis-slider-ctrl">
-              <button class="mslider-prev" onclick="melisSlide(-1)">‹</button>
-              <div class="mslider-dots">
-                <div class="mslider-dot active" onclick="melisGoTo(0)"></div>
-                <div class="mslider-dot" onclick="melisGoTo(1)"></div>
-                <div class="mslider-dot" onclick="melisGoTo(2)"></div>
-                <div class="mslider-dot" onclick="melisGoTo(3)"></div>
-              </div>
-              <button class="mslider-next" onclick="melisSlide(1)">›</button>
-            </div>
-          </div>
-        </div>
-                <div class="proj-meta">
-          <div class="proj-cat">Portfolio / Academic</div>
-          
-          <div class="proj-desc">Politecnico di Milano biyomedikal mühendisi için kişisel portfolyo sitesi. Koyu/açık mod, teal renk paleti, animasyonlu deneyim.</div>
-          <div class="proj-chips">
-            <span class="chip">HTML/CSS</span><span class="chip">Dark Mode</span><span class="chip">Motion</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d1">
-        <div class="proj-arrow-btn">↗</div>
-        <div class="proj-visual pv1">
-          <div class="proj-overlay"></div>
-          <div class="mbrowser">
-            <div class="mb-bar">
-              <div class="mb-dot" style="background:#ff5f57"></div>
-              <div class="mb-dot" style="background:#ffbd2e"></div>
-              <div class="mb-dot" style="background:#28ca41"></div>
-            </div>
-            <div class="mb-body">
-              <div class="mb-ln a"></div>
-              <div class="mb-rect"></div>
-              <div class="mb-g2"><div class="mb-rect"></div><div class="mb-rect"></div></div>
-              <div class="mb-ln b"></div>
-            </div>
-          </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-cat">E-Ticaret / Fashion</div>
-          <div class="proj-name">Luxe Mode</div>
-          <div class="proj-desc">Premium moda markası için dönüşüm odaklı e-ticaret platformu. İlk 3 ayda satışlar %180 arttı.</div>
-          <div class="proj-chips">
-            <span class="chip">Next.js</span><span class="chip">Shopify</span><span class="chip">Framer Motion</span><span class="chip">Tailwind</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d2">
-        <div class="proj-arrow-btn">↗</div>
-        <div class="proj-visual pv3">
-          <div class="proj-overlay"></div>
-          <div class="mbrowser">
-            <div class="mb-bar">
-              <div class="mb-dot" style="background:#ff5f57"></div>
-              <div class="mb-dot" style="background:#ffbd2e"></div>
-              <div class="mb-dot" style="background:#28ca41"></div>
-            </div>
-            <div class="mb-body">
-              <div class="mb-ln c" style="background:rgba(6,182,212,.25)"></div>
-              <div class="mb-rect" style="height:68px"></div>
-              <div class="mb-ln d"></div>
-              <div class="mb-ln b"></div>
-            </div>
-          </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-cat">Kurumsal / Finans</div>
-          <div class="proj-name">Vertex Capital</div>
-          <div class="proj-desc">Güven ve profesyonellik ileten finans firması web sitesi. Kurumsal iletişimde %240 artış.</div>
-          <div class="proj-chips">
-            <span class="chip">Webflow</span><span class="chip">GSAP</span><span class="chip">CMS</span>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="portfolio-side">
-      <div class="proj-card reveal d2">
-        <div class="proj-arrow-btn">↗</div>
-        <div class="proj-visual proj-visual-sm pv2">
-          <div class="proj-overlay"></div>
-          <div class="mbrowser" style="width:85%">
-            <div class="mb-bar">
-              <div class="mb-dot" style="background:#ff5f57"></div>
-              <div class="mb-dot" style="background:#ffbd2e"></div>
-              <div class="mb-dot" style="background:#28ca41"></div>
-            </div>
-            <div class="mb-body">
-              <div class="mb-ln a" style="background:rgba(139,92,246,.35)"></div>
-              <div class="mb-rect-p"></div>
-              <div class="mb-ln d"></div>
+    <!-- DİĞER PROJELER — Sağ slider -->
+    <div class="portfolio-others-col">
+      <div class="proj-right-slider">
+        <div class="proj-right-track" id="projRightTrack">
+
+          <div class="proj-right-slide">
+            <div class="proj-card">
+              <div class="proj-arrow-btn">↗</div>
+              <div class="proj-visual pv1">
+                <div class="proj-overlay"></div>
+                <div class="mbrowser">
+                  <div class="mb-bar">
+                    <div class="mb-dot" style="background:#ff5f57"></div>
+                    <div class="mb-dot" style="background:#ffbd2e"></div>
+                    <div class="mb-dot" style="background:#28ca41"></div>
+                  </div>
+                  <div class="mb-body">
+                    <div class="mb-ln a"></div>
+                    <div class="mb-rect"></div>
+                    <div class="mb-g2"><div class="mb-rect"></div><div class="mb-rect"></div></div>
+                    <div class="mb-ln b"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-meta">
+                <div class="proj-cat">E-Ticaret / Fashion</div>
+                <div class="proj-name">Luxe Mode</div>
+                <div class="proj-desc">Premium moda markası için dönüşüm odaklı e-ticaret platformu. İlk 3 ayda satışlar %180 arttı.</div>
+                <div class="proj-chips">
+                  <span class="chip">Next.js</span><span class="chip">Shopify</span><span class="chip">Framer Motion</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="proj-meta">
-          <div class="proj-cat">SaaS / Tech</div>
-          <div class="proj-name">DataFlow Pro</div>
-          <div class="proj-desc">B2B SaaS dashboard ve landing page. Kullanıcı aktivasyonu %3x arttı.</div>
-          <div class="proj-chips">
-            <span class="chip">React</span><span class="chip">TypeScript</span>
+
+          <div class="proj-right-slide">
+            <div class="proj-card">
+              <div class="proj-arrow-btn">↗</div>
+              <div class="proj-visual pv3">
+                <div class="proj-overlay"></div>
+                <div class="mbrowser">
+                  <div class="mb-bar">
+                    <div class="mb-dot" style="background:#ff5f57"></div>
+                    <div class="mb-dot" style="background:#ffbd2e"></div>
+                    <div class="mb-dot" style="background:#28ca41"></div>
+                  </div>
+                  <div class="mb-body">
+                    <div class="mb-ln c" style="background:rgba(6,182,212,.25)"></div>
+                    <div class="mb-rect" style="height:68px"></div>
+                    <div class="mb-ln d"></div>
+                    <div class="mb-ln b"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-meta">
+                <div class="proj-cat">Kurumsal / Finans</div>
+                <div class="proj-name">Vertex Capital</div>
+                <div class="proj-desc">Güven ve profesyonellik ileten finans firması web sitesi. Kurumsal iletişimde %240 artış.</div>
+                <div class="proj-chips">
+                  <span class="chip">Webflow</span><span class="chip">GSAP</span><span class="chip">CMS</span>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="proj-right-slide">
+            <div class="proj-card">
+              <div class="proj-arrow-btn">↗</div>
+              <div class="proj-visual proj-visual-sm pv2">
+                <div class="proj-overlay"></div>
+                <div class="mbrowser" style="width:85%">
+                  <div class="mb-bar">
+                    <div class="mb-dot" style="background:#ff5f57"></div>
+                    <div class="mb-dot" style="background:#ffbd2e"></div>
+                    <div class="mb-dot" style="background:#28ca41"></div>
+                  </div>
+                  <div class="mb-body">
+                    <div class="mb-ln a" style="background:rgba(139,92,246,.35)"></div>
+                    <div class="mb-rect-p"></div>
+                    <div class="mb-ln d"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="proj-meta">
+                <div class="proj-cat">SaaS / Tech</div>
+                <div class="proj-name">DataFlow Pro</div>
+                <div class="proj-desc">B2B SaaS dashboard ve landing page. Kullanıcı aktivasyonu %3x arttı.</div>
+                <div class="proj-chips">
+                  <span class="chip">React</span><span class="chip">TypeScript</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end track -->
+        <div class="proj-right-nav">
+          <button class="proj-slider-prev" id="projRightPrev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="proj-right-dots" id="projRightDots"></div>
+          <button class="proj-slider-next" id="projRightNext">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
       </div>
-
-      
     </div>
   </div>
-
-  <!-- Before/After -->
-  <div class="ba-section reveal">
-    <div class="ba-title">Önceki & Sonraki — Dönüşümü Görün</div>
-    <div class="ba-wrap" id="baWrap">
-
-      <!-- SONRA: Melis'in gerçek sitesi -->
-      <div class="ba-after">
-        <div class="ba-melis-mock">
-          <!-- Nav -->
-          <div class="bam-nav">
-            <span class="bam-logo">
-              <span class="bam-logo-dot"></span>
-              Melis Pamir
-            </span>
-            <div class="bam-links">
-              <span class="active">Hakkında</span><span>Eğitim</span><span>Projeler</span><span>İletişim</span>
-            </div>
-            <span class="bam-theme">☽</span>
-          </div>
-          <!-- Hero -->
-          <div class="bam-hero">
-            <div class="bam-text">
-              <div class="bam-eyebrow">Biyomedikal Mühendisi</div>
-              <h2 class="bam-name">Melis <span>Pamir</span></h2>
-              <p class="bam-bio">Politecnico di Milano'da sağlık teknolojileri ve biyomedikal araştırma.</p>
-              <div class="bam-btns">
-                <span class="bam-btn-p">Projeleri Gör</span>
-                <span class="bam-btn-s">İletişime Geç</span>
-              </div>
-            </div>
-            <div class="bam-photo-wrap">
-              <div class="bam-orbit"></div>
-              <div class="bam-mp">MP</div>
-            </div>
-          </div>
-          <!-- Stats -->
-          <div class="bam-stats">
-            <div class="bam-stat"><div class="bam-stat-n">6+</div><div class="bam-stat-l">Proje</div></div>
-            <div class="bam-stat"><div class="bam-stat-n">3</div><div class="bam-stat-l">Dil</div></div>
-            <div class="bam-stat"><div class="bam-stat-n">MSc</div><div class="bam-stat-l">PoliMi</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ÖNCE: Klasik sıkıcı CV sitesi -->
-      <div class="ba-before" id="baBefore">
-        <div class="ba-classic">
-          <!-- Klasik nav -->
-          <div class="bac-nav">
-            <span class="bac-logo">Melis Pamir</span>
-            <div class="bac-links">
-              <span>Home</span><span>About</span><span>Contact</span>
-            </div>
-          </div>
-          <!-- Klasik hero -->
-          <div class="bac-hero">
-            <div class="bac-avatar">MP</div>
-            <h2 class="bac-name">Melis Pamir</h2>
-            <p class="bac-title">Biomedical Engineer</p>
-            <p class="bac-desc">I am a biomedical engineering student currently pursuing my MSc at Politecnico di Milano.</p>
-            <a class="bac-btn">Download CV</a>
-          </div>
-          <!-- Klasik section -->
-          <div class="bac-section">
-            <div class="bac-section-title">Skills</div>
-            <div class="bac-skills">
-              <span>Python</span><span>MATLAB</span><span>Arduino</span><span>Research</span>
-            </div>
-          </div>
-          <div class="bac-section">
-            <div class="bac-section-title">Contact</div>
-            <p class="bac-contact">melispamir@email.com</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ba-divider" id="baDivider"></div>
-      <div class="ba-handle" id="baHandle">⟷</div>
-      <span class="ba-label ba-label-before">Önce</span>
-      <span class="ba-label ba-label-after">Sonra</span>
-    </div>
-  </div>
-</section>
 
 <!-- ════════ MARQUEE 2 ════════ -->
 <div class="marquee-wrap marquee-wrap2">
@@ -5132,6 +5606,96 @@ function copyEmail(email){
     });
   },{threshold:0.6});
   titles.forEach(t=>{ obs.observe(t); });
+})();
+
+
+/* eski proje slider kaldırıldı */
+(function(){
+  const track = document.getElementById('projSliderTrack');
+  const dotsEl = document.getElementById('projDots');
+  if(!track) return;
+
+  const slides = track.querySelectorAll('.proj-slider-slide');
+  const total = slides.length;
+  let cur = 0;
+  let perView = window.innerWidth >= 1100 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+  const maxIdx = Math.max(0, total - perView);
+
+  /* dots */
+  const dotCount = Math.ceil(total / perView);
+  for(let i=0;i<dotCount;i++){
+    const d = document.createElement('button');
+    d.className = 'proj-sdot' + (i===0?' active':'');
+    d.addEventListener('click',()=>goTo(i * perView));
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(idx){
+    cur = Math.max(0, Math.min(idx, maxIdx));
+    const slideW = slides[0].getBoundingClientRect().width + 20;
+    track.style.transform = `translateX(-${cur * slideW}px)`;
+    dotsEl.querySelectorAll('.proj-sdot').forEach((d,i)=>{
+      d.classList.toggle('active', i === Math.floor(cur/perView));
+    });
+  }
+
+  document.getElementById('projNext')?.addEventListener('click',()=>goTo(cur+1));
+  document.getElementById('projPrev')?.addEventListener('click',()=>goTo(cur > 0 ? cur-1 : maxIdx));
+
+  /* swipe */
+  let tx=0;
+  track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40) goTo(dx<0?cur+1:cur-1);
+  });
+
+  window.addEventListener('resize',()=>{
+    perView = window.innerWidth>=1100?3:window.innerWidth>=768?2:1;
+    goTo(0);
+  });
+})();
+
+
+/* ═══════ PROJE SAĞ SLIDER ═══════ */
+(function(){
+  const track = document.getElementById('projRightTrack');
+  const dotsEl = document.getElementById('projRightDots');
+  const prevBtn = document.getElementById('projRightPrev');
+  const nextBtn = document.getElementById('projRightNext');
+  if(!track) return;
+
+  const slides = track.querySelectorAll('.proj-right-slide');
+  const total = slides.length;
+  let cur = 0;
+
+  /* dots oluştur */
+  slides.forEach((_,i)=>{
+    const d = document.createElement('button');
+    d.className = 'proj-rdot' + (i===0?' active':'');
+    d.addEventListener('click',()=>goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(idx){
+    cur = (idx + total) % total;
+    const slideW = slides[0].getBoundingClientRect().width + 16;
+    track.style.transform = `translateX(-${cur * slideW}px)`;
+    dotsEl.querySelectorAll('.proj-rdot').forEach((d,i)=>{
+      d.classList.toggle('active', i === cur);
+    });
+  }
+
+  nextBtn?.addEventListener('click',()=>goTo(cur+1));
+  prevBtn?.addEventListener('click',()=>goTo(cur-1));
+
+  /* swipe */
+  let tx=0;
+  track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  track.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40) goTo(dx<0?cur+1:cur-1);
+  });
 })();
 
 </script>
