@@ -871,6 +871,46 @@ body.cursor-project #cursor-label{opacity:1}
   .pc-result{position:static}
 }
 
+/* ── MOBİL: FİYAT KARTI YANINDA ── */
+@media(max-width:768px){
+  .price-calc{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  /* pc-left ve pc-right yan yana */
+  .pc-calc-inner{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+  .pc-right{
+    position: sticky !important;
+    top: 72px !important;
+    z-index: 10 !important;
+  }
+  .pc-result{
+    position: sticky !important;
+    top: 72px !important;
+    font-size: 90% !important;
+  }
+  /* Fiyat rakamı küçüt */
+  .pc-num{ font-size: 32px !important; letter-spacing: -1px !important; }
+  .pc-cur{ font-size: 16px !important; }
+  .pc-price-label{ font-size: 8px !important; }
+  .pc-note{ font-size: 9px !important; margin-bottom: 10px !important; }
+  .pc-breakdown{ gap: 4px !important; margin-bottom: 10px !important; }
+  .pc-break-item{ font-size: 10px !important; }
+  .pc-cta{ font-size: 10px !important; padding: 10px 8px !important; margin-bottom: 8px !important; }
+  .pc-trust{ flex-direction: column !important; font-size: 8px !important; gap: 4px !important; }
+  .pc-result{ padding: 14px 12px !important; border-radius: 14px !important; }
+  .pc-discount-banner{ margin-bottom: 8px !important; }
+  .pc-discount-inner{ padding: 7px 10px !important; border-radius: 8px !important; }
+  .pc-discount-text{ font-size: 9px !important; }
+  .pc-discount-amt{ font-size: 13px !important; }
+  .pc-disc-icon-wrap{ width: 28px !important; height: 28px !important; }
+}
+
 /* ═══ AMBİENT LIGHT KARTLAR ═══ */
 
 /* ═══ ANALYTİCS DASHBOARD ═══ */
@@ -4882,6 +4922,7 @@ img {
 
   <!-- CANLI FİYAT HESAPLAYICI -->
   <div class="price-calc reveal" id="priceCalc">
+    <div class="pc-calc-inner">
     <div class="pc-left">
       <div class="pc-section">
         <div class="pc-section-title">Proje Türü</div>
@@ -5041,6 +5082,7 @@ img {
       </div>
     </div>
   </div>
+    </div><!-- /pc-calc-inner -->
 </section>
 
 <!-- ════════ FAQ ════════ -->
