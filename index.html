@@ -355,11 +355,16 @@ body.cursor-project #cursor-label{opacity:1}
 
 /* ═══ CANLI FİYAT HESAPLAYICI ═══ */
 .price-calc{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns: 1fr 1fr;
-  gap:32px;align-items:start;
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns: 1fr 420px;
+  gap:40px;align-items:start;
 }
 .pc-left{display:flex;flex-direction:column;gap:32px}
+.pc-right{
+  position:sticky;
+  top:88px;
+  z-index:10;
+}
 .pc-section-title{
   font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
   letter-spacing:.1em;text-transform:uppercase;
@@ -873,42 +878,73 @@ body.cursor-project #cursor-label{opacity:1}
 
 /* ── MOBİL: FİYAT KARTI YANINDA ── */
 @media(max-width:768px){
+  /* price-calc ana grid tek kolon — pc-calc-inner yan yana yapıyor */
   .price-calc{
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 12px !important;
   }
-  /* pc-left ve pc-right yan yana */
+  /* seçenekler (sol) + fiyat (sağ) yan yana */
   .pc-calc-inner{
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
+    grid-template-columns: 55fr 45fr !important;
+    gap: 10px !important;
     align-items: start !important;
   }
+  /* Sağ fiyat kartı sticky */
   .pc-right{
     position: sticky !important;
-    top: 72px !important;
+    top: 68px !important;
     z-index: 10 !important;
+    min-width: 0 !important;
   }
   .pc-result{
     position: sticky !important;
-    top: 72px !important;
-    font-size: 90% !important;
+    top: 68px !important;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+    min-width: 0 !important;
   }
-  /* Fiyat rakamı küçüt */
-  .pc-num{ font-size: 32px !important; letter-spacing: -1px !important; }
-  .pc-cur{ font-size: 16px !important; }
-  .pc-price-label{ font-size: 8px !important; }
-  .pc-note{ font-size: 9px !important; margin-bottom: 10px !important; }
-  .pc-breakdown{ gap: 4px !important; margin-bottom: 10px !important; }
-  .pc-break-item{ font-size: 10px !important; }
-  .pc-cta{ font-size: 10px !important; padding: 10px 8px !important; margin-bottom: 8px !important; }
-  .pc-trust{ flex-direction: column !important; font-size: 8px !important; gap: 4px !important; }
-  .pc-result{ padding: 14px 12px !important; border-radius: 14px !important; }
-  .pc-discount-banner{ margin-bottom: 8px !important; }
-  .pc-discount-inner{ padding: 7px 10px !important; border-radius: 8px !important; }
-  .pc-discount-text{ font-size: 9px !important; }
-  .pc-discount-amt{ font-size: 13px !important; }
-  .pc-disc-icon-wrap{ width: 28px !important; height: 28px !important; }
+  /* Fiyat küçüt ama okunabilir kalsın */
+  .pc-price-display{ padding-bottom: 10px !important; margin-bottom: 2px !important; }
+  .pc-price-label{ font-size: 8px !important; margin-bottom: 4px !important; }
+  .pc-num{ font-size: 28px !important; letter-spacing: -1px !important; }
+  .pc-cur{ font-size: 14px !important; padding-bottom: 4px !important; }
+  .pc-price-3d{ margin-bottom: 2px !important; }
+  .pc-note{ font-size: 8px !important; margin-bottom: 8px !important; }
+  .pc-breakdown{ gap: 3px !important; margin-bottom: 8px !important; max-height: 100px !important; overflow-y: auto !important; }
+  .pc-break-item{ font-size: 9px !important; }
+  .pc-break-label{ font-size: 9px !important; }
+  .pc-orig-price,.pc-final-price{ font-size: 8px !important; }
+  .pc-cta{
+    font-size: 9px !important;
+    padding: 10px 6px !important;
+    margin-bottom: 6px !important;
+    border-radius: 8px !important;
+    letter-spacing: .04em !important;
+  }
+  .pc-trust{ display: none !important; }
+  /* İndirim banner küçük */
+  .pc-discount-banner{ margin-bottom: 6px !important; }
+  .pc-discount-inner{ padding: 5px 8px !important; border-radius: 8px !important; gap: 4px !important; }
+  .pc-discount-content{ padding-left: 6px !important; }
+  .pc-discount-text{ font-size: 8px !important; }
+  .pc-discount-amt{ font-size: 11px !important; }
+  .pc-disc-icon-wrap{ width: 24px !important; height: 24px !important; }
+  .pc-disc-svg{ width: 24px !important; height: 24px !important; }
+  /* Orijinal fiyat */
+  .pc-original-price{ padding: 5px 8px !important; margin-bottom: 8px !important; }
+  .pc-original-label{ font-size: 7px !important; }
+  .pc-original-num{ font-size: 10px !important; }
+  .pc-savings{ font-size: 8px !important; padding: 2px 6px !important; }
+}
+
+@media(max-width:380px){
+  .pc-calc-inner{
+    grid-template-columns: 1fr !important;
+  }
+  .pc-right{
+    position: static !important;
+  }
 }
 
 /* ═══ AMBİENT LIGHT KARTLAR ═══ */
