@@ -3174,13 +3174,9 @@ footer{
    MOBİL KRİTİK FİX — TAM ÇÖZÜM
 ════════════════════════════════════════ */
 
-/* 1. Yatay scroll engelle — body'de hidden scroll'u kırar, sadece html */
+/* 1. Yatay scroll — sadece html'de, body'ye dokunma (scroll kırılır) */
 html {
   overflow-x: hidden !important;
-  max-width: 100vw !important;
-}
-body {
-  overflow-x: clip !important;
   max-width: 100vw !important;
 }
 
@@ -3189,6 +3185,10 @@ body {
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
+
+/* 2b. 3D fiyat shadow — max-width:none olmalı, yoksa absolute shadow kırpılır */
+.pc-price-3d { max-width: none !important; overflow: visible !important; }
+.pc-price-shadow { max-width: none !important; }
 
 /* 3. Görseller taşmasın */
 img, svg, canvas {
