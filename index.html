@@ -1598,7 +1598,7 @@ body.cursor-project #cursor-label{opacity:1}
   color:var(--text);margin-bottom:12px;
   transition:color var(--transition-theme);
 }
-.sv-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:500}
+.sv-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:5005}
 .sv-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
 .sv-tag{
   font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
@@ -2481,8 +2481,22 @@ footer{
 }
 
 @media(max-width:768px){
-  /* price-calc: display:grid kuralı (sonraki @media bloğu) zaten geçerli,
-     bu blok sadece breakdown/num overrides için kullanılıyor */
+  .price-calc{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:20px !important;
+  }
+  .pc-right{
+    position:sticky !important;
+    top:80px !important;
+    z-index:10 !important;
+  }
+  .pc-result{
+    position:sticky !important;
+    top:80px !important;
+    background:var(--bg2) !important;
+    box-shadow:0 8px 32px rgba(0,0,0,.3) !important;
+  }
   .pc-price-3d{
     display:flex !important;
     align-items:baseline !important;
@@ -2971,8 +2985,14 @@ footer{
 }
 
 
-/* ═══ MOBİL FİYAT HESAPLAYICI ═══ */
+/* ═══ MOBİL FİYAT HESAPLAYICI — YAN YANA ═══ */
 @media(max-width:768px){
+  .price-calc{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:12px !important;
+    align-items:start !important;
+  }
   /* Sol — seçenekler */
   .pc-left{
     min-width:0;
@@ -3165,6 +3185,10 @@ footer{
 }
 
 @media(max-width:480px){
+  .price-calc{
+    grid-template-columns:55fr 45fr !important;
+    gap:8px !important;
+  }
   .pc-num{ font-size:24px !important; }
   .pc-result{ padding:10px !important; }
 }
@@ -3174,8 +3198,8 @@ footer{
    MOBİL KRİTİK FİX — TAM ÇÖZÜM
 ════════════════════════════════════════ */
 
-/* 1. Yatay scroll — sadece html'de, body'ye dokunma (scroll kırılır) */
-html {
+/* 1. Yatay scroll engelle */
+html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
 }
@@ -3185,10 +3209,6 @@ html {
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
-
-/* 2b. 3D fiyat shadow — max-width:none olmalı, yoksa absolute shadow kırpılır */
-.pc-price-3d { max-width: none !important; overflow: visible !important; }
-.pc-price-shadow { max-width: none !important; }
 
 /* 3. Görseller taşmasın */
 img, svg, canvas {
@@ -3206,14 +3226,6 @@ img, svg, canvas {
 .hero { overflow: hidden !important; }
 
 @media (max-width: 768px) {
-
-  /* ── FULLMENU KLİP YOLU — buton mobilde daha yakın kenara ── */
-  #fullmenu{
-    clip-path:circle(0% at calc(100% - 36px) 36px) !important;
-  }
-  #fullmenu.open{
-    clip-path:circle(150% at calc(100% - 36px) 36px) !important;
-  }
 
   /* ── GENEL ── */
   .section { padding: 56px 16px !important; }
@@ -3458,21 +3470,6 @@ img, svg, canvas {
 }
 
 
-/* ── COPY EMAIL ── */
-.copy-email{
-  cursor:pointer;
-  text-decoration:underline;
-  text-decoration-color:rgba(var(--accent-rgb),.4);
-  text-underline-offset:3px;
-  transition:color .25s, text-decoration-color .25s;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-.copy-email:hover{
-  color:var(--accent);
-  text-decoration-color:var(--accent);
-}
-
 /* ── COPY TOAST ── */
 .copy-toast{
   position:fixed;
@@ -3514,21 +3511,6 @@ img, svg, canvas {
   .shapes-layer{ display:none !important; }
   #mouse-spotlight{ display:none !important; }
   #cursor-dot,#cursor-ring,#cursor-glow,#cursor-label{ display:none !important; }
-
-  /* ── MOBİL CURSOR FİX ── */
-  /* body'de cursor:none var, ama element bazlı cursor:none mobile'da override edilmez.
-     Tüm interactive ögelere pointer ver. */
-  a, button, [onclick],
-  .faq-q, .nav-cta, .nav-item, .menu-btn, .menu-link,
-  .menu-social, .sv-card, .proj-card, .pcard,
-  .testi-prev, .testi-next, .testi-dot,
-  .theme-toggle, .theme-toggle-wrap,
-  .about-link, .pc-opt, .pc-cta,
-  .proj-slider-prev, .proj-slider-next,
-  .mslider-prev, .mslider-next, .mslider-dot,
-  .copy-email, .social-link, .footer-nav a, .footer-links a {
-    cursor: pointer !important;
-  }
 }
 
 
@@ -3608,52 +3590,16 @@ img, svg, canvas {
   #cursor-dot, #cursor-ring, #cursor-label, #cursor-glow { display: none !important; }
   body { cursor: auto !important; }
 
-  /* ── FİYAT HESAPLAYICI: 2 kolon (masaüstü gibi) ── */
+  /* price-calc tek kolon */
   .price-calc {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
-    align-items: start !important;
+    grid-template-columns: 1fr !important;
   }
-  .pc-left {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    min-width: 0 !important;
-  }
-  /* Fiyat kartı sağ kolonda sabit kalır */
   .pc-right {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 70px !important;
-    min-width: 0 !important;
-    align-self: start !important;
+    position: static !important;
   }
-  /* Dar sol kolonda metinler kısalsın, ikonlar görünsün */
-  .pc-item-price-static { display: none !important; }
-  .pc-item-label {
-    font-size: 9px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    min-width: 0 !important;
-    flex: 1 !important;
+  .pc-result {
+    position: static !important;
   }
-  .pc-icon-wrap { width: 20px !important; height: 20px !important; }
-  .pc-svg-icon, .pc-svg-icon svg { width: 20px !important; height: 20px !important; }
-  .pc-anim-check { width: 16px !important; height: 16px !important; flex-shrink: 0 !important; }
-  /* Teslim süresi: 3 buton yan yana */
-  #pcSpeed.pc-options { flex-direction: row !important; }
-  .pc-speed-opt {
-    flex: 1 !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 4px !important;
-    width: auto !important;
-    padding: 8px 4px !important;
-  }
-  .pc-speed-icon { width: 22px !important; height: 22px !important; }
-  .pc-speed-text em { display: none !important; }
 
   /* Tilt kapat */
   .tilt-card {
@@ -3667,19 +3613,83 @@ img, svg, canvas {
 
 /* Hover efektleri sadece gerçek mouse'ta */
 @media (hover: none) {
-  .btn-glow:hover,
-  .btn-glass:hover { transform: none !important; box-shadow: none !important; }
-  .pc-opt:hover { transform: none !important; }
-  .pc-check-item:hover { transform: none !important; box-shadow: none !important; }
-  .proj-card:hover { transform: none !important; }
+  .btn-glow:hover { transform: none !important; box-shadow: none !important; }
+  .btn-glass:hover { transform: none !important; }
+  .pc-opt:hover { transform: none !important; background: var(--surface) !important; }
+  .pc-check-item:hover { transform: none !important; }
+  .proj-card:hover { transform: none !important; box-shadow: none !important; }
   .asg-card:hover { transform: none !important; }
-  .af-item:hover { transform: none !important; }
   .tcard:hover { transform: none !important; }
   .pcard:hover { transform: none !important; }
-  .sv-card:hover { background: var(--bg) !important; }
 }
 
 
+/* ══ SVG İKON GLOBAL FİX ══ */
+.af-icon svg,
+.af-icon-svg svg,
+.sv-icon-3d svg,
+.pc-svg-icon svg,
+.pc-type-icon svg,
+.pc-speed-icon svg {
+  display: block !important;
+  overflow: visible !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.af-icon,
+.af-icon-svg {
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.sv-icon-3d {
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* ══ MOBİL KAYDIRMA FİX ══ */
+html {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+.section,
+.about-grid,
+.services-grid,
+.portfolio-grid,
+.pricing-grid,
+.contact-grid {
+  overflow: visible !important;
+}
+
+/* Scroll'u bozan fixed elementler */
+#cursor-dot, #cursor-ring {
+  will-change: auto !important;
+}
+
+@media (max-width: 768px) {
+  /* Her section overflow visible */
+  section {
+    overflow: visible !important;
+    overflow-x: hidden !important;
+  }
+  /* Price calc kaydırma */
+  .price-calc {
+    overflow: visible !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Sticky pozisyon iptal — iOS scroll bloğu */
+  .pc-right,
+  .pc-result {
+    position: static !important;
+    top: auto !important;
+  }
+}
 
 </style>
 </head>
@@ -4286,7 +4296,7 @@ img, svg, canvas {
     <h2 class="s-title">Seçili çalışmalar.</h2>
   </div>
   <div class="portfolio-grid" style="max-width:1280px;margin:0 auto;">
-    <div class="proj-card melis-full-card reveal" onclick="melisSlide(1)">
+    <div class="proj-card melis-full-card" onclick="melisSlide(1)">
       <a href="https://rushwanted.github.io/melispamir/" target="_blank" rel="noopener" class="proj-arrow-btn" style="cursor:pointer;z-index:20;position:absolute;top:20px;right:20px;" onclick="event.stopPropagation()">↗</a>
       <div class="proj-visual pv-melis">
         <div class="proj-overlay"></div>
@@ -4414,7 +4424,6 @@ img, svg, canvas {
       </div>
       <div class="proj-meta">
         <div class="proj-cat">Portfolio / Academic</div>
-        <div class="proj-name">Melis Pamir</div>
         <div class="proj-desc">Politecnico di Milano biyomedikal mühendisi için kişisel portfolyo sitesi. Koyu/açık mod, teal renk paleti, animasyonlu deneyim.</div>
         <div class="proj-chips">
           <span class="chip">HTML/CSS</span><span class="chip">Dark Mode</span><span class="chip">Motion</span>
@@ -4422,7 +4431,6 @@ img, svg, canvas {
       </div>
     </div>
   </div>
-</section>
 
 <!-- ════════ MARQUEE 2 ════════ -->
 <div class="marquee-wrap marquee-wrap2">
@@ -4932,7 +4940,7 @@ img, svg, canvas {
         <textarea placeholder="Projeniz hakkında kısa bilgi verin, hedefinizi ve zaman çizelgenizi paylaşın..."></textarea>
       </div>
       <div class="cform-submit">
-        <button class="btn-glow">Mesaj Gönder →</button>
+        <button class="btn-glow" style="cursor:none">Mesaj Gönder →</button>
       </div>
     </div>
   </div>
@@ -4963,7 +4971,7 @@ img, svg, canvas {
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Baran Design Studio. Tüm hakları saklıdır.</div>
+    <div class="footer-copy">© 2025 Baran Design Studio. Tüm hakları saklıdır.</div>
     <div class="footer-links">
       <a href="#">Gizlilik Politikası</a>
       <a href="#">Kullanım Koşulları</a>
@@ -5135,22 +5143,24 @@ document.querySelectorAll('.nav-cta, .hero-btns .btn-glow, .hero-btns .btn-glass
 });
 
 /* ═══════ CARD TILT ═══════ */
-document.querySelectorAll('.proj-card,.sv-card,.pcard').forEach(card=>{
-  card.classList.add('tilt-card');
-  let rect=null;
-  card.addEventListener('mouseenter',()=>{rect=card.getBoundingClientRect();});
-  card.addEventListener('mousemove',e=>{
-    if(!rect) return;
-    const x=e.clientX-rect.left, y=e.clientY-rect.top;
-    const rx2=((y-rect.height/2)/rect.height)*10;
-    const ry2=((x-rect.width/2)/rect.width)*-10;
-    card.style.transform=`perspective(900px) rotateX(${rx2}deg) rotateY(${ry2}deg)`;
+if(window.innerWidth > 768){
+  document.querySelectorAll('.proj-card,.sv-card,.pcard').forEach(card=>{
+    card.classList.add('tilt-card');
+    let rect=null;
+    card.addEventListener('mouseenter',()=>{rect=card.getBoundingClientRect();});
+    card.addEventListener('mousemove',e=>{
+      if(!rect) return;
+      const x=e.clientX-rect.left, y=e.clientY-rect.top;
+      const rx2=((y-rect.height/2)/rect.height)*10;
+      const ry2=((x-rect.width/2)/rect.width)*-10;
+      card.style.transform=`perspective(900px) rotateX(${rx2}deg) rotateY(${ry2}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+      rect=null;
+    });
   });
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='';
-    rect=null;
-  });
-});
+}
 
 /* ═══════ SCROLL PROGRESS ═══════ */
 const scrollBar = document.getElementById('scroll-progress');
@@ -6193,9 +6203,7 @@ function copyEmail(email){
   });
 })();
 
-
 </script>
-
 
 </body>
 </html>
