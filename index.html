@@ -3604,17 +3604,43 @@ img, svg, canvas {
   #cursor-dot, #cursor-ring, #cursor-label, #cursor-glow { display: none !important; }
   body { cursor: auto !important; }
 
-  /* price-calc tek kolon — tüm mobil için */
+  /* price-calc: Proje Türü + Teslim tam geniş, Ekstra + Fiyat yan yana */
   .price-calc {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    grid-template-columns: 55fr 45fr !important;
+    grid-template-areas: "type type" "extras price" "speed speed" !important;
+    gap: 12px 10px !important;
+    align-items: start !important;
   }
+  /* pc-left'i şeffaflaştır — çocuklar doğrudan grid'e katılsın */
+  .pc-left {
+    display: contents !important;
+  }
+  .pc-left > .pc-section:nth-child(1) { grid-area: type !important; }
+  .pc-left > .pc-section:nth-child(2) { grid-area: extras !important; }
+  .pc-left > .pc-section:nth-child(3) { grid-area: speed !important; }
   .pc-right {
-    position: static !important;
+    grid-area: price !important;
+    position: sticky !important;
+    top: 70px !important;
+    min-width: 0 !important;
   }
   .pc-result {
-    position: static !important;
+    position: sticky !important;
+    top: 70px !important;
+  }
+  /* Dar ekstra kolonunda taşmayı önle */
+  .pc-icon-wrap { display: none !important; }
+  .pc-type-icon { display: none !important; }
+  .pc-item-price-static { display: none !important; }
+  /* Teslim süresi: 3 buton yan yana (tam genişlik) */
+  #pcSpeed.pc-options { flex-direction: row !important; }
+  .pc-speed-opt {
+    flex: 1 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    width: auto !important;
   }
 
   /* Tilt kapat */
@@ -3642,64 +3668,7 @@ img, svg, canvas {
 }
 
 
-/* ── MOBİL YAPIŞIK FİYAT ÇUBUĞU ── */
-.mobile-price-bar { display:none; }
-@media (max-width:768px) {
-  .mobile-price-bar {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    position:fixed;
-    bottom:0; left:0; right:0;
-    z-index:980;
-    padding:14px 20px;
-    padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
-    background:var(--bg);
-    border-top:1px solid var(--card-border);
-    box-shadow:0 -8px 32px rgba(0,0,0,.18);
-    transform:translateY(110%);
-    transition:transform .4s cubic-bezier(.4,0,.2,1);
-  }
-  .mobile-price-bar.mpb-show {
-    transform:translateY(0);
-  }
-  .mpb-left {
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-  }
-  .mpb-label {
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    color:var(--accent);
-  }
-  .mpb-note {
-    font-size:10px;
-    color:var(--text3);
-  }
-  .mpb-right {
-    display:flex;
-    align-items:flex-end;
-    gap:2px;
-  }
-  .mpb-cur {
-    font-family:'Cabinet Grotesk',sans-serif;
-    font-size:15px;
-    color:var(--text3);
-    padding-bottom:4px;
-  }
-  .mpb-num {
-    font-family:'Cabinet Grotesk',sans-serif;
-    font-size:34px;
-    font-weight:700;
-    letter-spacing:-1.5px;
-    line-height:1;
-    color:var(--text);
-    transition:color .3s;
-  }
-}
+
 </style>
 </head>
 <body>
@@ -6212,39 +6181,9 @@ function copyEmail(email){
   });
 })();
 
-/* ═══════ MOBİL FİYAT ÇUBUĞU ═══════ */
-(function(){
-  const bar    = document.getElementById('mobilePriceBar');
-  const mpbNum = document.getElementById('mpbTotal');
-  const pcTotalEl = document.getElementById('pcTotal');
-  if(!bar || !mpbNum || !pcTotalEl) return;
-
-  /* pcTotal değişince mpbNum'ı güncelle */
-  new MutationObserver(()=>{
-    mpbNum.textContent = pcTotalEl.textContent;
-  }).observe(pcTotalEl, {childList:true, characterData:true, subtree:true});
-
-  /* fiyatlar bölümünde görünür yap */
-  const fiyatlarEl = document.getElementById('fiyatlar');
-  if(fiyatlarEl){
-    new IntersectionObserver(entries=>{
-      bar.classList.toggle('mpb-show', entries[0].isIntersecting);
-    }, {threshold:0.05}).observe(fiyatlarEl);
-  }
-})();
 
 </script>
 
-<!-- ════════ MOBİL YAPIŞIK FİYAT ════════ -->
-<div class="mobile-price-bar" id="mobilePriceBar">
-  <div class="mpb-left">
-    <div class="mpb-label">Tahmini Fiyat</div>
-    <div class="mpb-note">KDV dahil değil</div>
-  </div>
-  <div class="mpb-right">
-    <span class="mpb-cur">₺</span><span class="mpb-num" id="mpbTotal">15.000</span>
-  </div>
-</div>
 
 </body>
 </html>
