@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#03030a">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2032%27%3E%0A%20%20%3Crect%20width%3D%2732%27%20height%3D%2732%27%20rx%3D%277%27%20fill%3D%27%252303030a%27/%3E%0A%20%20%3Ctext%20x%3D%273%27%20y%3D%2724%27%20font-family%3D%27Arial%20Black%2Csans-serif%27%20font-size%3D%2720%27%20font-weight%3D%27900%27%20fill%3D%27%25233d6fff%27%3E%0A%20%20%20%20B%0A%20%20%20%20%3Canimate%20attributeName%3D%27opacity%27%20values%3D%270%3B1%27%20dur%3D%270.4s%27%20begin%3D%270s%27%20fill%3D%27freeze%27/%3E%0A%20%20%20%20%3CanimateTransform%20attributeName%3D%27transform%27%20type%3D%27translate%27%20values%3D%27-8%200%3B0%200%27%20dur%3D%270.4s%27%20begin%3D%270s%27%20fill%3D%27freeze%27/%3E%0A%20%20%3C/text%3E%0A%20%20%3Ctext%20x%3D%2716%27%20y%3D%2724%27%20font-family%3D%27Arial%20Black%2Csans-serif%27%20font-size%3D%2720%27%20font-weight%3D%27900%27%20fill%3D%27%25238b5cf6%27%3E%0A%20%20%20%20D%0A%20%20%20%20%3Canimate%20attributeName%3D%27opacity%27%20values%3D%270%3B1%27%20dur%3D%270.4s%27%20begin%3D%270.2s%27%20fill%3D%27freeze%27/%3E%0A%20%20%20%20%3CanimateTransform%20attributeName%3D%27transform%27%20type%3D%27translate%27%20values%3D%278%200%3B0%200%27%20dur%3D%270.4s%27%20begin%3D%270.2s%27%20fill%3D%27freeze%27/%3E%0A%20%20%3C/text%3E%0A%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Cabinet+Grotesk:wght@400;700&display=swap&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 /* ═══════════════════════════════════════════
@@ -99,21 +100,23 @@ body{
 ═══════════════════════════════════════════ */
 /* ═══ PREMIUM CURSOR ═══ */
 #cursor-dot{
-  width:5px;height:5px;
-  background:#fff;
+  width:8px;height:8px;
+  background:var(--accent);
   border-radius:50%;
   position:fixed;top:0;left:0;
   pointer-events:none;z-index:9999;
   transform:translate(-50%,-50%);
-  transition:opacity .3s,transform .1s;
+  transition:opacity .3s,transform .15s;
+  box-shadow:0 0 12px rgba(var(--accent-rgb),.6);
 }
 #cursor-ring{
   width:36px;height:36px;
-  border:1.5px solid rgba(var(--accent-rgb),0.5);
+  border:1.5px solid rgba(var(--accent-rgb),0.7);
   border-radius:50%;
   position:fixed;top:0;left:0;
   pointer-events:none;z-index:9998;
   transform:translate(-50%,-50%);
+  transition:width .3s,height .3s,border-color .3s,background .3s;
 }
 #cursor-glow{ display:none; }
 /* text cursor state */
@@ -3743,6 +3746,220 @@ body {
   }
 }
 
+
+/* ══ ANİMASYONLU FULLMENU ══ */
+.menu-links { gap: 4px !important; margin-bottom: 48px; }
+
+.menu-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding: 10px 20px !important;
+  border-radius: 16px !important;
+  transition: background .25s, transform .3s cubic-bezier(.4,0,.2,1), color .25s !important;
+  transform: translateX(0) !important;
+  letter-spacing: -1.5px !important;
+}
+.menu-link:hover {
+  background: rgba(var(--accent-rgb), .06) !important;
+  transform: translateX(12px) !important;
+  color: var(--accent) !important;
+}
+.menu-link:hover .ml-emoji {
+  transform: scale(1.3) rotate(-8deg);
+}
+.menu-link:hover .ml-num {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.ml-emoji { display: none; }
+.ml-icon {
+  width: clamp(32px, 3vw, 44px);
+  height: clamp(32px, 3vw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.menu-link:hover .ml-icon {
+  transform: scale(1.2) rotate(-5deg);
+}
+.ml-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.ml-text {
+  flex: 1;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: -3px;
+  line-height: 1;
+}
+.ml-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--text3);
+  opacity: .6;
+  transition: color .25s, opacity .25s;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+/* Stagger animasyonu — menu açılınca */
+#fullmenu.open .menu-link:nth-child(1) { transition-delay: .05s; }
+#fullmenu.open .menu-link:nth-child(2) { transition-delay: .1s; }
+#fullmenu.open .menu-link:nth-child(3) { transition-delay: .15s; }
+#fullmenu.open .menu-link:nth-child(4) { transition-delay: .2s; }
+#fullmenu.open .menu-link:nth-child(5) { transition-delay: .25s; }
+
+/* Arka plan çizgiler */
+#fullmenu::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb),.08), transparent);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .ml-text { font-size: clamp(28px, 8vw, 48px) !important; letter-spacing: -1.5px !important; }
+  .ml-emoji { font-size: 22px !important; }
+  .menu-link { padding: 8px 14px !important; gap: 12px !important; }
+}
+
+
+/* ════════════════════════
+   PERFORMANS OPTİMİZASYON
+════════════════════════ */
+
+/* GPU katmanı — sadece gerçekten lazım olanlara */
+#nav,
+.melis-mock,
+.proj-card,
+.tcard {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Animasyonları GPU'ya taşı */
+.orb {
+  will-change: transform;
+}
+.marquee-track {
+  will-change: transform;
+}
+
+/* Scroll sırasında animasyonları durdur */
+.scrolling .orb,
+.scrolling .marquee-track {
+  animation-play-state: paused !important;
+}
+
+/* Ağır box-shadow'ları sadeleştir */
+.proj-card:hover,
+.tcard:hover,
+.pcard:hover,
+.asg-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25) !important;
+}
+
+/* SVG animasyonları — sadece görünür alanda */
+.af-icon-svg svg *,
+.sv-icon-3d svg *,
+.pc-svg-icon svg *,
+.pc-type-icon svg *,
+.pc-speed-icon svg *,
+.ml-icon svg * {
+  animation-play-state: running;
+}
+
+/* image-rendering optimize */
+img {
+  image-rendering: auto;
+}
+
+/* Transition cost azalt */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* contain ile repaint alanını sınırla */
+.sv-card,
+.proj-card,
+.tcard,
+.pcard,
+.af-item,
+.asg-card {
+  contain: layout style;
+}
+
+@media (max-width: 768px) {
+  /* Mobilde tüm karmaşık animasyonları durdur */
+  .orb { animation: none !important; display: none !important; }
+  .shape { display: none !important; }
+
+  /* SVG animasyonlar mobilde yavaşlat */
+  .af-icon-svg svg animate,
+  .af-icon-svg svg animateTransform,
+  .sv-icon-3d svg animate,
+  .sv-icon-3d svg animateTransform {
+    dur: 4s !important;
+  }
+
+  /* Marquee hızını düşür */
+  .marquee-track { animation-duration: 40s !important; }
+  .marquee-track2 { animation-duration: 50s !important; }
+  .logos-track { animation-duration: 30s !important; }
+
+  /* Hover transition'ları mobilde kaldır */
+  .proj-card,
+  .tcard,
+  .pcard,
+  .asg-card,
+  .af-item,
+  .sv-card {
+    transition: border-color 0.2s !important;
+    transform: none !important;
+  }
+
+  /* Box shadow mobilde hafif */
+  * {
+    box-shadow: none !important;
+  }
+  #nav.scrolled {
+    box-shadow: 0 1px 0 var(--border) !important;
+  }
+  .btn-glow {
+    box-shadow: none !important;
+  }
+  .pc-result {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+  }
+}
+
+/* prefers-reduced-motion — erişilebilirlik */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.1s !important;
+  }
+  .marquee-track,
+  .marquee-track2,
+  .logos-track {
+    animation: none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3775,11 +3992,94 @@ body {
 <div id="fullmenu">
   <div class="menu-inner">
     <nav class="menu-links">
-      <a href="#hakkimizda" class="menu-link" data-close-menu>Hakkımızda<span>01</span></a>
-      <a href="#hizmetler" class="menu-link" data-close-menu>Hizmetler<span>02</span></a>
-      <a href="#projeler" class="menu-link" data-close-menu>Projeler<span>03</span></a>
-      <a href="#fiyatlar" class="menu-link" data-close-menu>Fiyatlar<span>04</span></a>
-      <a href="#iletisim" class="menu-link" data-close-menu>İletişim<span>05</span></a>
+      <a href="#hakkimizda" class="menu-link" data-close-menu>
+        <span class="ml-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="18" width="24" height="18" rx="3" stroke="#3d6fff" stroke-width="1.8" fill="rgba(61,111,255,0.1)"/>
+            <path d="M4 20 L20 8 L36 20" stroke="#3d6fff" stroke-width="2" stroke-linecap="round">
+              <animate attributeName="stroke-width" values="2;3;2" dur="2s" repeatCount="indefinite"/>
+            </path>
+            <rect x="15" y="24" width="10" height="12" rx="2" fill="#3d6fff" opacity="0.5"/>
+            <rect x="14" y="23" width="5" height="5" rx="1" fill="#06b6d4" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="21" y="23" width="5" height="5" rx="1" fill="#06b6d4" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+            </rect>
+          </svg>
+        </span>
+        <span class="ml-text">Hakkımızda</span>
+        <span class="ml-num">01</span>
+      </a>
+      <a href="#hizmetler" class="menu-link" data-close-menu>
+        <span class="ml-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
+            <path d="M22 4 L12 22 L19 22 L18 36 L28 18 L21 18 Z" fill="url(#mg1)">
+              <animate attributeName="opacity" values="0.9;0.5;0.9" dur="0.8s" repeatCount="indefinite"/>
+            </path>
+            <path d="M30 8 Q37 20 30 32" stroke="#f59e0b" stroke-width="1.5" fill="none" stroke-linecap="round">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" begin="0.2s" repeatCount="indefinite"/>
+            </path>
+            <path d="M34 11 Q40 20 34 29" stroke="#ef4444" stroke-width="1" fill="none" stroke-linecap="round">
+              <animate attributeName="opacity" values="0.2;0.7;0.2" dur="0.8s" begin="0.4s" repeatCount="indefinite"/>
+            </path>
+          </svg>
+        </span>
+        <span class="ml-text">Hizmetler</span>
+        <span class="ml-num">02</span>
+      </a>
+      <a href="#projeler" class="menu-link" data-close-menu>
+        <span class="ml-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="12" width="28" height="22" rx="3" stroke="#8b5cf6" stroke-width="1.8" fill="rgba(139,92,246,0.08)"/>
+            <rect x="6" y="12" width="28" height="7" rx="3" fill="#8b5cf6" opacity="0.3"/>
+            <rect x="10" y="22" width="10" height="8" rx="2" fill="#06b6d4" opacity="0.6">
+              <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="22" y="22" width="8" height="3" rx="1" fill="#8b5cf6" opacity="0.5"/>
+            <rect x="22" y="27" width="6" height="3" rx="1" fill="#8b5cf6" opacity="0.3"/>
+            <circle cx="10" cy="15.5" r="1.5" fill="#ff5f57"/>
+            <circle cx="15" cy="15.5" r="1.5" fill="#ffbd2e"/>
+            <circle cx="20" cy="15.5" r="1.5" fill="#28ca41"/>
+          </svg>
+        </span>
+        <span class="ml-text">Projeler</span>
+        <span class="ml-num">03</span>
+      </a>
+      <a href="#fiyatlar" class="menu-link" data-close-menu>
+        <span class="ml-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="mg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
+            <polygon points="20,4 24,14 34,14 26,20 29,30 20,24 11,30 14,20 6,14 16,14" fill="url(#mg2)">
+              <animateTransform attributeName="transform" type="rotate" values="0 20 17;5 20 17;0 20 17;-5 20 17;0 20 17" dur="3s" repeatCount="indefinite"/>
+            </polygon>
+            <circle cx="20" cy="17" r="16" stroke="#f59e0b" stroke-width="1" fill="none">
+              <animate attributeName="r" values="16;20;16" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="9" cy="8" r="1.5" fill="#fbbf24"><animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/></circle>
+            <circle cx="31" cy="6" r="1" fill="#f59e0b"><animate attributeName="opacity" values="0;1;0" dur="1.8s" begin="0.5s" repeatCount="indefinite"/></circle>
+          </svg>
+        </span>
+        <span class="ml-text">Fiyatlar</span>
+        <span class="ml-num">04</span>
+      </a>
+      <a href="#iletisim" class="menu-link" data-close-menu>
+        <span class="ml-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="10" width="30" height="22" rx="4" stroke="#3d6fff" stroke-width="1.8" fill="rgba(61,111,255,0.1)"/>
+            <path d="M5 14 L20 23 L35 14" stroke="#3d6fff" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <circle cx="30" cy="10" r="6" fill="#ef4444">
+              <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <text x="30" y="14" text-anchor="middle" font-size="7" font-weight="bold" fill="white">!</text>
+          </svg>
+        </span>
+        <span class="ml-text">İletişim</span>
+        <span class="ml-num">05</span>
+      </a>
     </nav>
     <div class="menu-footer">
       <a href="#" class="menu-social">Twitter</a>
@@ -4347,142 +4647,7 @@ body {
     <div class="s-label">Projeler</div>
     <h2 class="s-title">Seçili çalışmalar.</h2>
   </div>
-  <div class="portfolio-grid" style="max-width:1280px;margin:0 auto;">
-    <div class="proj-card melis-full-card" onclick="melisSlide(1)">
-      <a href="https://rushwanted.github.io/melispamir/" target="_blank" rel="noopener" class="proj-arrow-btn" style="cursor:pointer;z-index:20;position:absolute;top:20px;right:20px;" onclick="event.stopPropagation()">↗</a>
-      <div class="proj-visual pv-melis">
-        <div class="proj-overlay"></div>
-        <div class="melis-mock" id="melisMock">
-          <!-- THEME TOGGLE BAR -->
-          <div class="melis-toggle-bar" onclick="toggleMelisTheme(event)">
-            <div class="melis-toggle-left">
-              <span class="mtb-dot"></span>
-              <span class="mtb-label" id="mtbLabel">Aydınlık Mod</span>
-            </div>
-            <div class="melis-toggle-switch" id="melisSwitch">
-              <div class="melis-toggle-knob"></div>
-            </div>
-          </div>
-          <!-- NAV -->
-          <div class="melis-nav">
-            <a class="melis-logo-badge"><div class="melis-logo-dot"></div>MP</a>
-            <div class="melis-nav-links">
-              <span class="active">Hakkında</span>
-              <span>Eğitim</span>
-              <span>Projeler</span>
-              <span>İletişim</span>
-            </div>
-            <div class="melis-nav-right">
-              <span class="melis-lang">TR</span>
-              <span class="melis-theme-icon">☽</span>
-            </div>
-          </div>
-          <!-- SLIDER -->
-          <div class="melis-slider" id="melisSlider">
-            <!-- SLIDE 1: Hero -->
-            <div class="mslide mslide-active">
-              <div class="melis-hero">
-                <div class="melis-hero-text">
-                  <div class="melis-eyebrow">Biyomedikal Mühendisi</div>
-                  <h2 class="melis-hero-name">Melis <span>Pamir</span></h2>
-                  <p class="melis-hero-bio">Sağlık teknolojileri ve biyomedikal araştırma alanında çalışan tutkulu bir mühendis.</p>
-                  <div class="melis-btns">
-                    <div class="melis-btn-p">Projeleri Gör</div>
-                    <div class="melis-btn-s">İletişime Geç</div>
-                  </div>
-                </div>
-                <div class="melis-photo-wrap">
-                  <div class="melis-orbit"></div>
-                  <div class="melis-mp-logo">MP</div>
-                </div>
-              </div>
-            </div>
-            <!-- SLIDE 2: Projects -->
-            <div class="mslide">
-              <div class="mslide-inner">
-                <div class="mslide-label">Projeler</div>
-                <div class="mslide-proj-grid">
-                  <div class="mslide-proj-card mslide-feat">
-                    <div class="mslide-proj-num">01</div>
-                    <div class="mslide-proj-icon">🧬</div>
-                    <div class="mslide-proj-title">Biyosensör Sinyal İşleme</div>
-                    <div class="mslide-proj-tags"><span>Python</span><span>Sinyal İşleme</span></div>
-                  </div>
-                  <div class="mslide-proj-card">
-                    <div class="mslide-proj-num">02</div>
-                    <div class="mslide-proj-icon">🧠</div>
-                    <div class="mslide-proj-title">Medikal Görüntüleme YZ</div>
-                    <div class="mslide-proj-tags"><span>Derin Öğrenme</span></div>
-                  </div>
-                  <div class="mslide-proj-card">
-                    <div class="mslide-proj-num">03</div>
-                    <div class="mslide-proj-icon">❤️</div>
-                    <div class="mslide-proj-title">Giyilebilir Sağlık Monitörü</div>
-                    <div class="mslide-proj-tags"><span>IoT</span><span>Arduino</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- SLIDE 3: Education -->
-            <div class="mslide">
-              <div class="mslide-inner">
-                <div class="mslide-label">Eğitim</div>
-                <div class="mslide-edu-list">
-                  <div class="mslide-edu-card">
-                    <div class="mslide-edu-logo">PoliMi</div>
-                    <div class="mslide-edu-info">
-                      <div class="mslide-edu-degree">MSc Biyomedikal Mühendisliği</div>
-                      <div class="mslide-edu-school">Politecnico di Milano</div>
-                      <div class="mslide-edu-date">2023 — Devam · Milano, İT</div>
-                    </div>
-                  </div>
-                  <div class="mslide-edu-card">
-                    <div class="mslide-edu-logo">METU</div>
-                    <div class="mslide-edu-info">
-                      <div class="mslide-edu-degree">BSc Biyomedikal Mühendisliği</div>
-                      <div class="mslide-edu-school">Orta Doğu Teknik Üniversitesi</div>
-                      <div class="mslide-edu-date">2019 — 2023 · Ankara, TR</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- SLIDE 4: Contact -->
-            <div class="mslide">
-              <div class="mslide-inner mslide-contact">
-                <div class="mslide-label">İletişim</div>
-                <div class="mslide-contact-title">Bağlantı kuralım.</div>
-                <div class="mslide-contact-sub">Araştırma iş birlikleri ve fırsatlara açığım.</div>
-                <div class="mslide-contact-links">
-                  <div class="mslide-contact-item">✉ melispamir@email.com</div>
-                  <div class="mslide-contact-item">in LinkedIn</div>
-                  <div class="mslide-contact-item">🐙 GitHub</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- SLIDER CONTROLS -->
-          <div class="melis-slider-ctrl">
-            <button class="mslider-prev" onclick="melisSlide(-1)">‹</button>
-            <div class="mslider-dots">
-              <div class="mslider-dot active" onclick="melisGoTo(0)"></div>
-              <div class="mslider-dot" onclick="melisGoTo(1)"></div>
-              <div class="mslider-dot" onclick="melisGoTo(2)"></div>
-              <div class="mslider-dot" onclick="melisGoTo(3)"></div>
-            </div>
-            <button class="mslider-next" onclick="melisSlide(1)">›</button>
-          </div>
-        </div>
-      </div>
-      <div class="proj-meta">
-        <div class="proj-cat">Portfolio / Academic</div>
-        <div class="proj-desc">Politecnico di Milano biyomedikal mühendisi için kişisel portfolyo sitesi. Koyu/açık mod, teal renk paleti, animasyonlu deneyim.</div>
-        <div class="proj-chips">
-          <span class="chip">HTML/CSS</span><span class="chip">Dark Mode</span><span class="chip">Motion</span>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 <!-- ════════ MARQUEE 2 ════════ -->
 <div class="marquee-wrap marquee-wrap2">
@@ -4887,50 +5052,30 @@ body {
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q">
-          Web sitesi yapım süreci ne kadar sürer?
-          <div class="faq-icon">+</div>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Projenin kapsamına göre değişmekle birlikte, standart bir kurumsal web sitesi 3–5 haftada tamamlanır. E-ticaret projeleri 6–10 hafta sürebilir. Keşif görüşmesi sonrası size özel zaman çizelgesi paylaşıyoruz.</div>
-        </div>
+        <button class="faq-q">Web sitesi yapım süreci ne kadar sürer?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">Proje türüne göre değişir. Standart bir kurumsal web sitesi <strong>2–3 haftada</strong>, e-ticaret projeleri ise <strong>3–4 haftada</strong> teslim edilir. Keşif görüşmesi sonrası size özel zaman çizelgesi paylaşıyoruz.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">
-          Tasarım sürecine dahil olabilir miyim?
-          <div class="faq-icon">+</div>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Kesinlikle. Figma üzerinden canlı tasarım dosyalarını paylaşıyor, her aşamada onayınızı alıyoruz. Revizyon süreçleri tamamen şeffaf ve işbirlikçi yürütülür.</div>
-        </div>
+        <button class="faq-q">Mevcut sitem varsa yeniden tasarım yapabilir misiniz?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">Evet. Mevcut sitenizi analiz edip güçlü yönleri korurken modern, hızlı ve dönüşüm odaklı bir tasarıma kavuşturuyoruz. Domain ve içerikleriniz eksiksiz aktarılır.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">
-          Site teslimi sonrası destek alabilir miyim?
-          <div class="faq-icon">+</div>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Evet. Tüm paketlerimiz teslim sonrası destek içerir. Ayrıca aylık bakım anlaşmaları ile sitenizin güncel, hızlı ve güvenli kalmasını sağlıyoruz.</div>
-        </div>
+        <button class="faq-q">Site teslimi sonrası destek alabilir miyim?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">Evet. Tüm paketlerimiz teslim sonrası destek içerir. Aylık bakım anlaşmaları ile siteniz güncel, hızlı ve güvenli kalır.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">
-          Hangi teknolojileri kullanıyorsunuz?
-          <div class="faq-icon">+</div>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Projenin ihtiyacına göre React/Next.js, Webflow, Shopify, WordPress gibi teknolojiler arasında en uygununu seçiyoruz. Tasarım için Figma, animasyon için GSAP ve Framer Motion kullanıyoruz.</div>
-        </div>
+        <button class="faq-q">Sitem Google'da üst sıralarda çıkar mı?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">Tüm sitelerimiz teknik SEO altyapısıyla teslim edilir: hızlı yükleme, doğru meta etiketler, mobil uyumluluk ve yapılandırılmış veri. İçerik stratejisi için ayrıca danışmanlık da sunuyoruz.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">
-          Ödeme nasıl yapılıyor?
-          <div class="faq-icon">+</div>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">%40 başlangıç, %40 tasarım onayı, %20 teslimatta. </div>
-        </div>
+        <button class="faq-q">Hangi teknolojileri kullanıyorsunuz?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">Projeye göre React/Next.js, Webflow, Shopify veya WordPress kullanıyoruz. Tasarım için Figma, animasyon için GSAP kullanılır. Her zaman projenize en uygun teknolojiyi seçiyoruz.</div></div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q">Ödeme nasıl yapılıyor?<div class="faq-icon">+</div></button>
+        <div class="faq-a"><div class="faq-a-inner">%40 başlangıçta, %40 tasarım onayında, %20 teslimatta. Fatura ve havale ile ödeme kabul edilmektedir.</div></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -5023,7 +5168,7 @@ body {
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Baran Design Studio. Tüm hakları saklıdır.</div>
+    <div class="footer-copy">© 2026 Baran Design Studio. Tüm hakları saklıdır.</div>
     <div class="footer-links">
       <a href="#">Gizlilik Politikası</a>
       <a href="#">Kullanım Koşulları</a>
@@ -6263,6 +6408,31 @@ function copyEmail(email){
     if(Math.abs(dx)>40) goTo(dx<0?cur+1:cur-1);
   });
 })();
+
+
+/* ═══ SCROLL SIRASINDA ANİMASYON DURDUR ═══ */
+let scrollTimer = null;
+window.addEventListener('scroll', ()=>{
+  document.body.classList.add('scrolling');
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(()=>{
+    document.body.classList.remove('scrolling');
+  }, 150);
+}, { passive: true });
+
+/* ═══ INTERSECTION OBSERVER — SVG ANİMASYON ═══ */
+const animObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    const svgs = e.target.querySelectorAll('svg animate, svg animateTransform');
+    svgs.forEach(a=>{
+      a.setAttribute('repeatCount', e.isIntersecting ? 'indefinite' : '0');
+    });
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.af-item, .sv-card, .pc-check-item, .pc-speed-opt, .pc-type-opt, .menu-link').forEach(el=>{
+  animObserver.observe(el);
+});
 
 </script>
 
