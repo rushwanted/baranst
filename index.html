@@ -3691,6 +3691,58 @@ body {
   }
 }
 
+
+/* ══ MOBİL SCROLL KRİTİK FİX ══ */
+@media (max-width: 768px) {
+
+  /* Scroll engelleyen tüm fixed elementleri pointer-events:none yap */
+  #cursor-dot,
+  #cursor-ring,
+  #cursor-glow,
+  #cursor-label,
+  #mouse-spotlight,
+  #scroll-progress,
+  body::after {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  /* Body ve html kesinlikle scroll edebilsin */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100% !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: static !important;
+  }
+
+  /* Menu açıkken body scroll kilit — JS ile yapılıyor zaten */
+  /* Ama fixed elementler touch'ı yutmasın */
+  #fullmenu {
+    pointer-events: none !important;
+  }
+  #fullmenu.open {
+    pointer-events: all !important;
+  }
+
+  /* Tüm section'lar scroll'u geçirsin */
+  section, .section, div, main, article {
+    touch-action: pan-y !important;
+  }
+
+  /* PC check item — touch'ı yutmasın ama tıklanabilsin */
+  .pc-check-item input[type="checkbox"] {
+    touch-action: manipulation !important;
+  }
+
+  /* Ripple animasyonu scroll'u engelliyor olabilir */
+  .pc-ripple {
+    pointer-events: none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -5090,8 +5142,15 @@ menuBtn?.addEventListener('click',()=>{
   menuOpen = !menuOpen;
   menuBtn.classList.toggle('open',menuOpen);
   fullmenu.classList.toggle('open',menuOpen);
-  document.body.style.overflow = menuOpen ? 'hidden' : '';
-  document.documentElement.style.overflow = menuOpen ? 'hidden' : '';
+  if(menuOpen){
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  } else {
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+  }
 });
 document.querySelectorAll('[data-close-menu]').forEach(el=>{
   el.addEventListener('click',()=>{
@@ -5099,6 +5158,8 @@ document.querySelectorAll('[data-close-menu]').forEach(el=>{
     menuBtn.classList.remove('open');
     fullmenu.classList.remove('open');
     document.body.style.overflow='';
+    document.body.style.position='';
+    document.body.style.width='';
   });
 });
 
