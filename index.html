@@ -3174,12 +3174,9 @@ footer{
    MOBİL KRİTİK FİX — TAM ÇÖZÜM
 ════════════════════════════════════════ */
 
-/* 1. Yatay scroll engelle — sadece html'de, body'de değil (body'de hidden sticky'yi kırar) */
-html {
+/* 1. Yatay scroll engelle */
+html, body {
   overflow-x: hidden !important;
-  max-width: 100vw !important;
-}
-body {
   max-width: 100vw !important;
 }
 
@@ -3619,16 +3616,20 @@ img, svg, canvas {
     flex-direction: column !important;
     gap: 12px !important;
     min-width: 0 !important;
-    overflow: hidden !important;
+  }
+  /* sticky body overflow-x:hidden ile çakışmasın diye price-calc relative */
+  .price-calc {
+    position: relative !important;
   }
   .pc-right {
+    position: -webkit-sticky !important;
     position: sticky !important;
     top: 70px !important;
     min-width: 0 !important;
+    align-self: start !important;
   }
   .pc-result {
-    position: sticky !important;
-    top: 70px !important;
+    position: static !important;
   }
   /* Dar kolonlarda taşmayı önle */
   .pc-icon-wrap { display: none !important; }
